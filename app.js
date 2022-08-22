@@ -12,7 +12,7 @@ app.use(express.static("public"));
 const PORT = 3000
 
 app.get('/', (req, res) => {
-  res.render('home');
+  res.render('home', { hsc: homeStartingContent });
 })
 
 
