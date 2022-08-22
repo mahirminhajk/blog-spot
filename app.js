@@ -1,5 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const { homeStartingContent, aboutContent, contactContent } = require(__dirname + "/texts.js")
 
 const app = express();
 
@@ -10,7 +11,9 @@ app.use(express.static("public"));
 
 const PORT = 3000
 
-
+app.get('/', (req, res) => {
+  res.render('home');
+})
 
 
 
