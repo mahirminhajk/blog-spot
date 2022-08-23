@@ -9,11 +9,13 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-const PORT = 3000
+const PORT = 3000;
+const posts = [];
 
 //'/'
 app.get('/', (req, res) => {
   res.render('home', { hsc: homeStartingContent });
+  console.log(posts);
 });
 
 //'about'
@@ -36,7 +38,8 @@ app.post('/compose', (req, res) => {
     pT: req.body.postTitle,
     pB: req.body.postBody
   };
-  console.log(post);
+  posts.push(post);
+  res.redirect('/');
 });
 
 
