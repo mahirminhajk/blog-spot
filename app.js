@@ -1,6 +1,8 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const { homeStartingContent, aboutContent, contactContent } = require(__dirname + "/texts.js")
+const _ = require('lodash');
+
+const { homeStartingContent, aboutContent, contactContent } = require(__dirname + "/texts.js");
 
 const app = express();
 
@@ -43,8 +45,10 @@ app.post('/compose', (req, res) => {
 
 //posts/:
 app.get('/posts/:var', (req, res) => {
+  let requestedName = _.lowerCase(req.params.var);
   posts.forEach(post => {
-    if (req.params.var == post.pT) {
+    let postTitle = _.lowerCase(post.pT);
+    if (requestedName === postTitle) {
       console.log("match found...");
     }
   });
