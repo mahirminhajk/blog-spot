@@ -32,7 +32,11 @@ app.get('/compose', (req, res) => {
 });
 
 app.post('/compose', (req, res) => {
-  console.log(req.body.postTitle);
+  let post = {
+    pT: req.body.postTitle,
+    pB: req.body.postBody
+  };
+  console.log(post);
 });
 
 
