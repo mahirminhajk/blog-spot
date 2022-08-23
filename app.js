@@ -17,12 +17,6 @@ app.get('/', (req, res) => {
   res.render('home', { hsc: homeStartingContent, posts: posts });
 });
 
-//posts/:
-app.get('/posts/:var', (req, res) => {
-  console.log(req.params.var);
-})
-
-
 //'about'
 app.get('/about', (req, res) => {
   res.render('about', { ac: aboutContent });
@@ -47,6 +41,14 @@ app.post('/compose', (req, res) => {
   res.redirect('/');
 });
 
+//posts/:
+app.get('/posts/:var', (req, res) => {
+  posts.forEach(post => {
+    if (req.params.var == post.pT) {
+      console.log("match found...");
+    }
+  });
+})
 
 
 
