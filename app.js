@@ -17,6 +17,12 @@ app.get('/', (req, res) => {
   res.render('home', { hsc: homeStartingContent, posts: posts });
 });
 
+//posts/:
+app.get('/posts/:var', (req, res) => {
+  console.log(req.params.var);
+})
+
+
 //'about'
 app.get('/about', (req, res) => {
   res.render('about', { ac: aboutContent });
