@@ -14,8 +14,7 @@ const posts = [];
 
 //'/'
 app.get('/', (req, res) => {
-  res.render('home', { hsc: homeStartingContent });
-  console.log(posts);
+  res.render('home', { hsc: homeStartingContent, posts: posts });
 });
 
 //'about'
