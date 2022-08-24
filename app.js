@@ -49,7 +49,7 @@ app.get('/posts/:var', (req, res) => {
   posts.forEach(post => {
     let postTitle = _.lowerCase(post.pT);
     if (requestedName === postTitle) {
-      console.log("match found...");
+      res.render('post', { post: post });
     }
   });
 })
