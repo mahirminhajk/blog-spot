@@ -1,16 +1,16 @@
 # blog-spot-0
 nodejs, expressjs{bodyparser, ejs, lodash}, ::: a simple blog-spot to upload blog and see it (fully back-end) 
 
-## intall all npm package
- ### npm i
+intall all npm package
+ - npm i
 
 
-## install nodemon 
-### npm run dev
+install nodemon 
+- npm run dev
 
 
 run in local host
-### http://localhost:3000/
+ - http://localhost:3000/
 
 pages:
 - http://localhost:3000/
