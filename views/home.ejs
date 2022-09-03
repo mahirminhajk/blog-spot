@@ -3,8 +3,8 @@
 <h1>HOME</h1>
 <p><%= hsc %> </p>
 <% posts.forEach(post => { %>
-<h1><%= post.pT %></h1>
-<p><%= post.pB.substring(0,100)+"..."%> <a href="<%= "/posts/" + post.pT %> ">Read More</a></p>
+<h1><%= post.title %></h1>
+<p><%= post.content.substring(0,100)+"..."%> <a href="<%= "/posts/" + post._id %> ">Read More</a></p>
 <% }); %>
 
 <%- include("partials/footer") %>

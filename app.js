@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const _ = require('lodash');
+const mongoose = require('mongoose');
 
 const { homeStartingContent, aboutContent, contactContent } = require(__dirname + "/texts.js");
 
@@ -11,12 +12,26 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
+mongoose.connect('mongodb://127.0.0.1:27017/blogSpot');
+
 const PORT = 3000;
-const posts = [];
+
+const blogSchema = new mongoose.Schema({//title//content
+  title: String,
+  content: String
+});
+const Post = mongoose.model('post', blogSchema);
 
 //'/'
 app.get('/', (req, res) => {
-  res.render('home', { hsc: homeStartingContent, posts: posts });
+
+  Post.find({}, (err, foundPost) => {
+    if (!err) {
+      res.render('home', { hsc: homeStartingContent, posts: foundPost });
+    }
+  });
+
+
 });
 
 //'about'
@@ -35,29 +50,26 @@ app.get('/compose', (req, res) => {
 });
 
 app.post('/compose', (req, res) => {
-  let post = {
-    pT: req.body.postTitle,
-    pB: req.body.postBody
-  };
-  posts.push(post);
-  res.redirect('/');
+  const post1 = new Post({
+    title: req.body.postTitle,
+    content: req.body.postBody
+  });
+  post1.save((err) => {
+    if (!err) {
+      res.redirect('/');
+    }
+  });
 });
 
 //posts/:
-app.get('/posts/:var', (req, res) => {
-  let requestedName = _.lowerCase(req.params.var);
-  posts.forEach(post => {
-    let postTitle = _.lowerCase(post.pT);
-    if (requestedName === postTitle) {
-      res.render('post', { post: post });
+app.get('/posts/:postId', (req, res) => {
+  let requestedPostId = req.params.postId;
+  Post.findOne({ _id: requestedPostId }, (err, foundPost) => {
+    if (!err) {
+      res.render('post', { post: foundPost });
     }
   });
 })
-
-
-
-
-
 
 app.listen(PORT, function () {
   console.log(`***************************${PORT}***************************`);
