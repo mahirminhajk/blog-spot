@@ -19,9 +19,9 @@ Blog-Spot is a simple Node.js and Express application for creating and viewing b
    cd <repository-directory>
    ```
 2. **Install Dependencies:**
-```bash
-npm install
-```
+   ```bash
+   npm install
+   ```
 3. **Install Nodemon (for development):**
    ```bash
    npm run dev
